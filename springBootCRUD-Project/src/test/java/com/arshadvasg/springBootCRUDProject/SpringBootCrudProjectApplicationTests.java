@@ -1,4 +1,4 @@
-package binod.suman.spring_boot_CRUD_project;
+package com.arshadvasg.springBootCRUDProject;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
