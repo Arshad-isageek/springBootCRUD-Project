@@ -8,7 +8,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
+import org.junit.jupiter.api.ClassOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestClassOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -16,12 +19,14 @@ import com.arshadvasg.springBootCRUDProject.dao.StudentDAO;
 import com.arshadvasg.springBootCRUDProject.entity.Student;
 
 @SpringBootTest
+@TestClassOrder(OrderAnnotation.class)
 class SpringBootCrudProjectApplicationTests {
 
 	@Autowired
 	StudentDAO sdao; 
 	
 	@Test
+	@Order(1)
 	void testCreate() {
 	
 		Student sTest = new Student();
@@ -35,18 +40,21 @@ class SpringBootCrudProjectApplicationTests {
 	}
 	
 	@Test
+	@Order(2)
 	void testToReadAll() {
 		List<Student> sList = sdao.findAll();
 		assertThat(sList).size().isGreaterThan(0);
 	}
 	
 	@Test
+	@Order(3)
 	void testGraduated() {
 		Student sTestGrad = sdao.findById(313).get();
 		assertEquals("Yes", sTestGrad.getGraduated());
 	}
 
 	@Test
+	@Order(4)
 	void testUpdateInfo() {
 		Student si = sdao.findById(400).get();
 		si.setName("Asma Binth Sulaima");
@@ -55,6 +63,7 @@ class SpringBootCrudProjectApplicationTests {
 	}
 
 	@Test
+	@Order(5)
 	void testDeleteinfo() {
 		// Student sde = sdao.findById(193).get();
 		// sdao.delete(sde);
